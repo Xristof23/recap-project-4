@@ -13,6 +13,7 @@ function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: initialActivities,
   });
+  const isGoodWeather = true;
 
   function handleActivity(name, isForGoodWeather) {
     setActivities([
@@ -30,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <h1>Super Weather App 3000</h1>
-      <List activities={activities} />
+      <List activities={activities} isGoodWeather={isGoodWeather} />
       <Form onAddActivity={handleActivity} />
     </div>
   );
