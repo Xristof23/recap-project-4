@@ -45,12 +45,20 @@ function App() {
     ]);
   }
 
+  function handleDeleteActivity(id) {
+    setActivities(activities.filter((activity) => activity.id !== id));
+  }
+
   return (
     <div className="App">
       <h1>Super Weather App 3000</h1>
       {isGoodWeather ? <span>🌞</span> : <span>⛈️</span>}
       <p>{temperature} °C</p>
-      <List activities={activities} isGoodWeather={isGoodWeather} />
+      <List
+        activities={activities}
+        isGoodWeather={isGoodWeather}
+        onDeleteActivity={handleDeleteActivity}
+      />
       <Form onAddActivity={handleActivity} />
     </div>
   );
