@@ -27,11 +27,16 @@ function App() {
         const data = await response.json();
         setIsGoodWeather(data.isGoodWeather);
         setTemperature(data.temperature);
+        console.log(data.temperature, data.isGoodWeather);
       } catch (error) {
         console.error(error);
       }
     }
-    fetchWeatherData();
+    const interval = setInterval(fetchWeatherData, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   function handleActivity(name, isForGoodWeather) {
