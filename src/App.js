@@ -4,6 +4,7 @@ import { uid } from "uid";
 import List from "./components/List/List";
 import useLocalStorageState from "use-local-storage-state";
 import { useEffect, useState } from "react";
+import Weather from "./components/Weather/Weather";
 
 const initialActivities = [
   { id: 1, name: "Walking", isForGoodWeather: true },
@@ -16,7 +17,7 @@ function App() {
   });
 
   const [isGoodWeather, setIsGoodWeather] = useState(true);
-  const [temperature, setTemperature] = useState(888);
+  const [temperature, setTemperature] = useState(20);
 
   useEffect(() => {
     async function fetchWeatherData() {
@@ -27,7 +28,6 @@ function App() {
         const data = await response.json();
         setIsGoodWeather(data.isGoodWeather);
         setTemperature(data.temperature);
-        console.log(data.temperature, data.isGoodWeather);
       } catch (error) {
         console.error(error);
       }
@@ -57,8 +57,7 @@ function App() {
   return (
     <div className="App">
       <h1>Super Weather App 3000</h1>
-      {isGoodWeather ? <span>🌞</span> : <span>⛈️</span>}
-      <p>{temperature} °C</p>
+      <Weather isGoodWeather={isGoodWeather} temperature={temperature} />
       <List
         activities={activities}
         isGoodWeather={isGoodWeather}
