@@ -21,7 +21,7 @@ function App() {
       {
         id: uid(),
         name: name,
-        isForGoodWeather: isForGoodWeather === "on" ? true : false,
+        isForGoodWeather: isForGoodWeather,
       },
     ]);
   }
