@@ -2,7 +2,13 @@ import "./Weather.css";
 
 export default function Weather({ isGoodWeather, temperature }) {
   return (
-    <section className="weather-container">
+    <section
+      className={
+        isGoodWeather
+          ? "weather-container"
+          : "weather-container weather-container-bad"
+      }
+    >
       <p className="smilie">
         {isGoodWeather ? <span>🌞</span> : <span>⛈️</span>}
       </p>
