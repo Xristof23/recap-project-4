@@ -16,8 +16,10 @@ function App() {
     defaultValue: initialActivities,
   });
 
-  const [isGoodWeather, setIsGoodWeather] = useState(true);
-  const [temperature, setTemperature] = useState(20);
+  const [weatherData, setWeatherData] = useState({
+    isGoodWeather: true,
+    temperature: 20,
+  });
 
   useEffect(() => {
     async function fetchWeatherData() {
@@ -26,8 +28,7 @@ function App() {
           "https://example-apis.vercel.app/api/weather"
         );
         const data = await response.json();
-        setIsGoodWeather(data.isGoodWeather);
-        setTemperature(data.temperature);
+        setWeatherData(data);
       } catch (error) {
         console.error(error);
       }
@@ -39,13 +40,13 @@ function App() {
     };
   }, []);
 
-  function handleActivity(name, isForGoodWeather) {
+  function handleAddActivity(name, isForGoodWeather) {
     setActivities([
       ...activities,
       {
         id: uid(),
-        name: name,
-        isForGoodWeather: isForGoodWeather,
+        name,
+        isForGoodWeather,
       },
     ]);
   }
@@ -57,13 +58,16 @@ function App() {
   return (
     <div className="App">
       <h1>Super Weather App 3000</h1>
-      <Weather isGoodWeather={isGoodWeather} temperature={temperature} />
+      <Weather
+        isGoodWeather={weatherData.isGoodWeather}
+        temperature={weatherData.temperature}
+      />
       <List
         activities={activities}
-        isGoodWeather={isGoodWeather}
+        isGoodWeather={weatherData.isGoodWeather}
         onDeleteActivity={handleDeleteActivity}
       />
-      <Form onAddActivity={handleActivity} />
+      <Form onAddActivity={handleAddActivity} />
     </div>
   );
 }
