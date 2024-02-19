@@ -1,14 +1,14 @@
 li {
   background-color: lightgrey;
   justify-content: space-between;
-  max-width: 80vh;
   font-size: 1.5rem;
   display: flex;
   flex-flow: row;
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   text-align: left;
   padding: 0.1rem 2rem;
   border-radius: 0.5rem;
+  align-self: stretch;
 }
 .delete-button {
   font-size: 1.5rem;
@@ -16,7 +16,22 @@ li {
   width: 2.5rem;
   height: 2.5rem;
   cursor: pointer;
+  align-self: center;
+  border-radius: 0.5rem;
+  background-color: lightcoral;
 }
-.delete-buttton:hover {
+.delete-button:hover {
   opacity: 0.8;
+  background-color: darkred;
+  color: white;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  padding: 0;
+  margin-bottom: 2rem;
 }
